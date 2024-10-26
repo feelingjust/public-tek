@@ -1,3 +1,13 @@
+async function fetchLocation() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                document.getElementById('ip').innerText = `Ur IP: ${data.ip}`;
+            } catch (error) {
+                console.error('Error fetching IP location:', error);
+            }
+        }
+
 let randomNumber;
 let attempts = 0;
 
@@ -27,21 +37,4 @@ function restartGame() {
 
 // Mulai game saat halaman dimuat
 window.onload = startGame;
-
-function toggleIP() {
-            const ipAddress = document.getElementById('ipAddress');
-            ipAddress.classList.toggle('show');
-        }
-
-async function fetchUserIP() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                console.error('Error fetching IP:', error);
-                return '';
-            }
-        }
-        
-document.getElementById('ipAddress').innerText = userIP;
+window.onload = fetchLocation;

@@ -2,7 +2,7 @@ async function fetchLocation() {
             try {
                 const response = await fetch('https://ipapi.co/json/');
                 const data = await response.json();
-                document.getElementById('ip').innerText = `Ur IP: ${data.ip}`;
+                document.getElementById('ip').innerText = `${data.ip}`;
             } catch (error) {
                 console.error('Error fetching IP location:', error);
             }

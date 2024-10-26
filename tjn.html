@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Have Fun</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .hapus {
+            background-color: #fff;
+        }
+        .hapus:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Masukkan Teks</h1>
+    <input type="text" id="teksInput" placeholder="Aku Ganteng">
+    <button onclick="TeksIni()">Tambah Teks</button>
+    
+    <br>
+    <br>
+    <marquee>Hallo User, Tempat Ini Live, Bisa Di Lihat Dari Orang Lain</marquee>
+    <br>
+
+    <h2>Daftar Teks Yang Di Tulis:</h2>
+    <ul id="ListIni"></ul>
+
+    <script>
+        // Mengambil teks dari local storage saat halaman dimuat
+        window.onload = function() {
+            const ListIni = JSON.parse(localStorage.getItem('ListIni')) || [];
+            ListIni.forEach(teks => {
+                buatteksElement(teks);
+            });
+        };
+
+        function TeksIni() {
+            const teksInput = document.getElementById('teksInput');
+            const ListIni = document.getElementById('ListIni');
+
+            if (teksInput.value) {
+                const teks = teksInput.value;
+                buatteksElement(teks);
+                simpanteks(teks);
+                teksInput.value = '';
+            } else {
+                alert('Minimal 1 Huruf\nTidak Boleh Kosong');
+            }
+        }
+
+        function buatteksElement(teks) {
+            const ListIni = document.getElementById('ListIni');
+            const li = document.createElement('li');
+            li.textContent = teks;
+            
+            const hapusButton = document.createElement('button');
+            hapusButton.textContent = '';
+            hapusButton.className = 'hapus';
+            hapusButton.onclick = function() {
+                ListIni.removeChild(li);
+                hapusteks(teks);
+            };
+            
+            li.appendChild(hapusButton);
+            ListIni.appendChild(li);
+        }
+
+        function simpanteks(teks) {
+            const ListIni = JSON.parse(localStorage.getItem('ListIni')) || [];
+            ListIni.push(teks);
+            localStorage.setItem('ListIni', JSON.stringify(ListIni));
+        }
+
+        function hapusteks(teks) {
+            let ListIni = JSON.parse(localStorage.getItem('ListIni')) || [];
+            ListIni = ListIni.filter(t => t !== teks);
+            localStorage.setItem('ListIni', JSON.stringify(ListIni));
+        }
+    </script>
+</body>
+</html>

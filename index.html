@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Angka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tebak Angka</h1>
+    <p>Tebak angka antara 1 dan 100</p>
+    <input type="number" id="guess" placeholder="Masukkan angka" />
+    <button onclick="checkGuess()">Tebak</button>
+    <br>
+    <p id="message"></p>
+    <button onclick="restartGame()">Mulai Ulang</button>
+    <marquee>tombol Mulai Ulang berguna untuk mengubah angka yang di tebak</marquee>
+    <h5> Ur IP : $IpLocation</h5>
+    <h6>Kasih Tau Admin Jika Rekor Kamu Bagus Dan Tunjukan</h6>
+    <br>
+    Rekor <br>
+    <br> 114.10.64.142<br>[ menebak Angka 5 dengan 1 percobaan ]
+    <br>
+    <br> 114.80.28.118<br>[ menebak Angka 78 dengan 5 percobaan ]
+    <br>
+
+    <script src="script.js"></script>
+</body>
+</html>
